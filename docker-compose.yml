@@ -8,9 +8,6 @@ services:
     ports:
       - ${MCP_PORT:-8000}:8000
     environment:
-      MCP_HOST: 0.0.0.0
-      MCP_PORT: '8000'
-      MCP_PATH: /mcp
       TDARR_URL: ${TDARR_URL:-http://host.docker.internal:8265}
       TDARR_API_KEY: ${TDARR_API_KEY:-}
       TDARR_API_KEY_HEADER: ${TDARR_API_KEY_HEADER:-X-API-Key}
