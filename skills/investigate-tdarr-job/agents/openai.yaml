@@ -1,0 +1,4 @@
+interface:
+  display_name: Investigate Tdarr Job
+  short_description: Diagnose failed Tdarr transcode jobs
+  default_prompt: Use $investigate-tdarr-job to determine why a Tdarr job failed.
