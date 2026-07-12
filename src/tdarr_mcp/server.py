@@ -9,7 +9,7 @@ from pathlib import Path
 import httpx
 from fastmcp import FastMCP
 
-SPEC_PATH = Path(__file__).resolve().parents[2] / "tdarr.openapi.json"
+SPEC_PATH = Path(__file__).with_name("tdarr.openapi.json")
 
 
 def create_server() -> FastMCP:

@@ -21,3 +21,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/tdarr_mcp"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"tdarr.openapi.json" = "tdarr_mcp/tdarr.openapi.json"
