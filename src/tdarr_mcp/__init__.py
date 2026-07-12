@@ -1,0 +1,1 @@
+"""Tdarr MCP server package."""

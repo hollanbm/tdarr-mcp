@@ -6,12 +6,12 @@ FASTMCP_SERVER ?= src/tdarr_mcp/server.py:mcp
 
 .PHONY: openapi validate run
 
-# Fetch Tdarr's Swagger 2 document, convert it to OpenAPI 3, remove the invalid
-# empty externalDocs object, and validate it with FastMCP.
+# Fetch Tdarr's Swagger 2 document, convert it to OpenAPI 3, remove generated
+# source metadata and the invalid empty externalDocs object, then validate it.
 openapi:
 	npx --yes -p swagger2openapi@$(SWAGGER2OPENAPI_VERSION) \
 		swagger2openapi --patch --outfile "$(OPENAPI_FILE)" "$(TDARR_DOCS_URL)"
-	jq 'del(.externalDocs | select(. == {}))' \
+	jq 'del(."x-origin") | del(.externalDocs | select(. == {}))' \
 		"$(OPENAPI_FILE)" > "$(OPENAPI_FILE).tmp"
 	mv "$(OPENAPI_FILE).tmp" "$(OPENAPI_FILE)"
 	$(MAKE) validate

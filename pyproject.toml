@@ -1,0 +1,23 @@
+[project]
+name = "tdarr-mcp"
+version = "0.1.0"
+description = "FastMCP server generated from the Tdarr OpenAPI document"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastmcp>=3.0,<4",
+    "httpx>=0.27,<1",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.15.21"]
+
+[project.scripts]
+tdarr-mcp = "tdarr_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tdarr_mcp"]
