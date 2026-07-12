@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# Allow files and directories
+!tdarr.openapi.json
+!/pyproject.toml
+!/uv.lock
+!/README.md
+!/src
