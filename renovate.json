@@ -1,0 +1,51 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>hollanbm/renovate-config"],
+  "pinDigests": false,
+  "minimumReleaseAge": "14 days",
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "astral-sh/uv",
+        "astral-sh/uv-pre-commit",
+        "ghcr.io/astral-sh/uv",
+        "uv"
+      ],
+      "groupName": "uv"
+    },
+    {
+      "matchPackageNames": ["ruff", "astral-sh/ruff-pre-commit"],
+      "groupName": "ruff"
+    },
+    {
+      "matchPackageNames": "python-dateutil",
+      "allowedVersions": ">2.9.0"
+    },
+    {
+      "matchPackageNames": "python",
+      "matchUpdateTypes": ["major", "minor"],
+      "automerge": false,
+      "dependencyDashboardApproval": true
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^Dockerfile$/"],
+      "matchStrings": ["ARG UV_VERSION=(?<currentValue>\\S+)"],
+      "depNameTemplate": "uv",
+      "packageNameTemplate": "astral-sh/uv",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^pyproject\\.toml$/"],
+      "matchStrings": ["required-version = \"==(?<currentValue>[^\"]+)\""],
+      "depNameTemplate": "uv",
+      "packageNameTemplate": "astral-sh/uv",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver"
+    }
+  ]
+}
